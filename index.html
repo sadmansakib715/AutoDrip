@@ -50,51 +50,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .flow-node {
-            background-color: white;
-            border: 2px solid #e2e8f0; /* slate-200 */
-            border-radius: 0.5rem;
-            padding: 0.75rem 1.25rem;
-            text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        }
-        .flow-node.diamond {
-            transform: rotate(45deg);
-            width: 150px;
-            height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 2rem auto;
-        }
-        .flow-node.diamond .content {
-            transform: rotate(-45deg);
-        }
-        .flow-line {
-            position: absolute;
-            background-color: #94a3b8; /* slate-400 */
-            z-index: -1;
-        }
-        .flow-line.arrow-down::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -8px;
-            transform: translateX(-50%);
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-top: 8px solid #94a3b8;
-        }
-         .flow-line.arrow-right::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: -8px;
-            transform: translateY(-50%);
-            border-top: 6px solid transparent;
-            border-bottom: 6px solid transparent;
-            border-left: 8px solid #94a3b8;
-        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -105,9 +60,10 @@
             <h1 class="text-2xl font-bold text-blue-600">Autodrip</h1>
             <ul class="flex space-x-6">
                 <li><a href="#problem" class="text-gray-600 hover:text-blue-600">The Problem</a></li>
-                <li><a href="#solution" class="text-gray-600 hover:text-blue-600">Solution</a></li>
                 <li><a href="#performance" class="text-gray-600 hover:text-blue-600">Performance</a></li>
                 <li><a href="#features" class="text-gray-600 hover:text-blue-600">Features</a></li>
+                <li><a href="#acknowledgements" class="text-gray-600 hover:text-blue-600">Acknowledgements</a></li>
+                <li><a href="#references" class="text-gray-600 hover:text-blue-600">References</a></li>
             </ul>
         </nav>
     </header>
@@ -149,90 +105,6 @@
                         <p class="text-center text-gray-700">Manual IV flow rate adjustment is error-prone and impractical during outbreaks, risking patient safety due to improper fluid management.</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- The Solution Section (NEW FLOWCHART) -->
-        <section id="solution" class="mb-16 md:mb-24">
-            <div class="text-center mb-12">
-                <h3 class="text-3xl font-bold">Autodrip's Working Principle</h3>
-                <p class="mt-2 text-lg text-gray-600">A visual guide to our system's intelligent feedback and control loop.</p>
-            </div>
-
-            <div class="relative max-w-4xl mx-auto p-4">
-                <div class="flow-node w-1/3 mx-auto">Input Mode</div>
-                <div class="flow-line arrow-down" style="height: 30px; width: 2px; top: 60px; left: 50%;"></div>
-
-                <div class="flex justify-center mt-16 space-x-16">
-                    <!-- Normal Mode Path -->
-                    <div class="w-1/2 relative text-center">
-                        <div class="flow-line" style="height: 2px; width: 50%; top: -38px; left: 50%;"></div>
-                        <div class="flow-line arrow-down" style="height: 40px; width: 2px; top: -38px; left: 25%;"></div>
-                        <p class="absolute font-semibold" style="top: -65px; left: 25%; transform: translateX(-50%);">Normal Mode</p>
-                        <div class="flow-node -rotate-6 transform">Input Desired Flow Rate (I)</div>
-                    </div>
-                    <!-- Dengue Mode Path -->
-                    <div class="w-1/2 relative text-center">
-                         <div class="flow-line" style="height: 2px; width: 50%; top: -38px; right: 50%;"></div>
-                        <div class="flow-line arrow-down" style="height: 40px; width: 2px; top: -38px; right: 25%;"></div>
-                        <p class="absolute font-semibold" style="top: -65px; right: 25%; transform: translateX(50%);">Dengue Mode</p>
-                        <div class="flow-node rotate-6 transform">Input Patient Parameters</div>
-                        <div class="flow-line arrow-down" style="height: 30px; width: 2px; top: 50px; left: 50%;"></div>
-                        <div class="flow-node mt-12 rotate-6 transform">Required Drop Rate Calculated (I)</div>
-                    </div>
-                </div>
-
-                <!-- Convergence Point -->
-                <div class="flow-line" style="width: 2px; height: 100px; top: 110px; left: 25%;"></div>
-                <div class="flow-line" style="width: 50%; height: 2px; top: 210px; left: 25%;"></div>
-                <div class="flow-line" style="width: 2px; height: 100px; top: 220px; right: 25%;"></div>
-                <div class="flow-line arrow-down" style="width: 2px; height: 30px; top: 210px; left: 50%;"></div>
-
-                <div class="mt-40 text-center">
-                    <div class="flow-node w-1/2 mx-auto">Detect Drop Rate using IR Sensor (D)</div>
-                </div>
-                <div class="flow-line arrow-down" style="height: 30px; width: 2px; bottom: 250px; left: 50%;"></div>
-
-                <!-- Decision Diamond -->
-                <div class="relative h-64 flex justify-center items-center mt-8">
-                    <div class="flow-node diamond"><span class="content font-bold">D == I?</span></div>
-                    <!-- YES Path -->
-                    <div class="flow-line" style="width: 2px; height: 60px; top: 195px; left: 50%;"></div>
-                    <p class="absolute font-semibold text-green-600" style="top: 170px; left: 52%;">Yes</p>
-                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2">
-                        <div class="flow-node bg-green-100 border-green-300">The Drop Rate is Set</div>
-                    </div>
-
-                    <!-- NO Path to Binary Search -->
-                    <div class="flow-line" style="width: 150px; height: 2px; top: 125px; left: calc(50% + 75px);"></div>
-                    <p class="absolute font-semibold text-red-600" style="top: 100px; left: 58%;">No</p>
-                </div>
-                
-                <!-- Binary Search Loop -->
-                <div class="relative border-2 border-dashed border-slate-400 rounded-lg p-8 pt-16 mt-[-150px] ml-[55%] w-[45%]">
-                    <p class="absolute top-2 right-4 font-bold text-slate-500">Binary Search Algorithm</p>
-                     <div class="flow-line arrow-right" style="width: 30px; height: 2px; top: 50%; left: -30px;"></div>
-                    <div class="relative flex justify-center items-center">
-                        <div class="flow-node diamond !w-40 !h-40"><span class="content font-bold">D > I?</span></div>
-                        <!-- YES Path (Decrease) -->
-                        <div class="flow-line" style="width: 2px; height: 40px; top: 100px; left: 50%;"></div>
-                        <p class="absolute font-semibold" style="top: 75px; left: 55%;">Yes</p>
-                        <div class="absolute bottom-[-90px] left-1/2 transform -translate-x-1/2">
-                            <div class="flow-node bg-red-100 border-red-300">Decrease Flow Rate</div>
-                        </div>
-                        <!-- NO Path (Increase) -->
-                        <div class="flow-line" style="width: 100px; height: 2px; top: 50%; right: -30px;"></div>
-                        <p class="absolute font-semibold" style="top: 40%; right: 5%;">No</p>
-                        <div class="absolute top-1/2 right-[-140px] transform -translate-y-1/2">
-                            <div class="flow-node bg-yellow-100 border-yellow-300">Increase Flow Rate</div>
-                        </div>
-                    </div>
-                    <!-- Loop back line -->
-                    <div class="flow-line" style="height: 180px; width: 2px; top: 145px; right: -80px;"></div>
-                    <div class="flow-line" style="height: 2px; width: 200%; top: 325px; right: -80px;"></div>
-                    <div class="flow-line arrow-down" style="height: 250px; width: 2px; top: 325px; left: -120%; z-index: -2;"></div>
-                </div>
-
             </div>
         </section>
 
@@ -279,7 +151,7 @@
         </section>
 
         <!-- Key Features Section -->
-        <section id="features">
+        <section id="features" class="mb-16 md:mb-24">
             <div class="text-center mb-12">
                 <h3 class="text-3xl font-bold">Key Features & Advantages</h3>
                 <p class="mt-2 text-lg text-gray-600">What makes Autodrip a unique and powerful solution.</p>
@@ -309,6 +181,38 @@
                     <h4 class="font-bold text-lg mb-2">✓ Environmentally Sustainable</h4>
                     <p class="text-gray-600">Uses a reusable system and a biodegradable PLA casing to minimize medical waste.</p>
                 </div>
+            </div>
+        </section>
+        
+        <!-- Acknowledgements Section -->
+        <section id="acknowledgements" class="mb-16 md:mb-24">
+             <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold">Acknowledgements</h3>
+                <p class="mt-2 text-lg text-gray-600">Special thanks to our advisors and contributors for their invaluable guidance.</p>
+            </div>
+            <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md text-center">
+                <h4 class="text-xl font-bold text-gray-900">Dr. Md. Khairul Islam</h4>
+                <p class="text-gray-700 mt-1">MBBS, BCS(Health), MCPS(Medicine), FCPS(Medicine)</p>
+                <p class="text-gray-500 mt-1">Dhaka Medical College Hospital, Dhaka</p>
+            </div>
+        </section>
+
+        <!-- References Section -->
+        <section id="references">
+            <div class="text-center mb-8">
+                <h3 class="text-3xl font-bold">References</h3>
+            </div>
+            <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                <ol class="list-decimal list-inside space-y-4 text-gray-700">
+                    <li><a href="https://old.dghs.gov.bd/index.php/bd/home/5200-daily-dengue-status-report" target="_blank" class="text-blue-600 hover:underline">DGHS Daily Dengue Status Report</a></li>
+                    <li><a href="https://www.who.int/emergencies/disease-outbreak-news/item/2023-DON481" target="_blank" class="text-blue-600 hover:underline">WHO Disease Outbreak News (2023-DON481)</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/2023_dengue_outbreak_in_Bangladesh" target="_blank" class="text-blue-600 hover:underline">2023 Dengue Outbreak in Bangladesh - Wikipedia</a></li>
+                    <li>National Guideline for Clinical Management of Dengue Syndrome- 4th Edition, 2018 (Revised)</li>
+                    <li>A. P. Chhoan, S. Sarker and D. K. Saha, "A Low-Cost Automatic Intravenous Fluid Control System for Medical Treatment," 2020 2nd International Conference on Advanced Information and Communication Technology (ICAICT), Dhaka, Bangladesh, 2020, pp. 246-250.</li>
+                    <li>Diana BN, Yenny CB, Carolina MBM, Esteban T, Emiro B, et al. (2022) “Fluid Management in Dengue Critical Phase: Which, When, How Much?”. Int Arch Med Microbiol 4:015.</li>
+                    <li>Nitin Jadhav, Swapnil Shinde and Akshay Kale. (2019); “A CASE SERIES OF DENGUE HEMORRHAGIC FEVER WITH COMPLICATION, EMPHASIS ON FLUID MANAGEMENT AND COMPLICATION OF RAPID FLUID REPLACEMENT”. Int. J. of Adv. Res. 7 (May). 163-167.</li>
+                    <li>SANDHYA, Mrs VP. "IOT BASED SALINE INFUSION MONITORING AND CONTROL SYSTEM."</li>
+                </ol>
             </div>
         </section>
 
